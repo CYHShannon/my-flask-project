@@ -216,7 +216,8 @@ def courseSchedule():
             'courseSchedule.html', 
             courses=courses_list, 
             coaches=coaches_list, 
-            schedules=schedules_list
+            schedules=schedules_list,
+            user = current_user.name
         )
 
 
@@ -269,7 +270,7 @@ def plan():
         except Exception as e:
             flash(f'新增失敗：{e}', 'error')
             
-        return redirect(url_for('manager.plan'))
+        return redirect(url_for('manager.plan'), user=current_user.name)
 
     # --- 處理 GET 請求 (顯示頁面) ---
     if request.method == 'GET':
@@ -284,7 +285,8 @@ def plan():
         # 2. 渲染模板
         return render_template(
             'plan.html', 
-            plans=plans_list
+            plans=plans_list, 
+            user = current_user.name
         )
 
 
